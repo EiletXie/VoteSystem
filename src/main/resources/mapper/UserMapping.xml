@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suntak.demo.dao.UserDao">
+    <select id="queryUser" resultType="com.suntak.demo.entity.User">
+        SELECT userid, username,password,
+               deptname,level,registerDate
+        FROM t_user
+        ORDER BY registerDate
+        DESC
+    </select>
+
+    <select id="getUserById" resultType="com.suntak.demo.entity.User">
+        SELECT userid, username,password,
+               deptname,level,registerDate
+        FROM t_user
+        WHERE userid = #{userid}
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userid"
+    keyColumn="userid" parameterType="com.suntak.demo.entity.User">
+        INSERT INTO t_user(username,password,
+               deptname,level,registerDate)
+        VALUES
+        (#{username},#{password},#{deptname},#{level},#{registerDate})
+    </insert>
+
+    <update id="updateUser"  parameterType="com.suntak.demo.entity.User">
+        UPDATE  t_user
+        <set>
+            <if test="username!=null">username=#{username}</if>
+            <if test="password!=null">username=#{password}</if>
+            <if test="deptname!=null">username=#{deptname}</if>
+            <if test="level!=null">username=#{level}</if>
+        </set>
+        WHERE userid=#{userid}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM
+        t_user
+        WHERE userid=#{userid}
+    </delete>
+</mapper>
