@@ -10,7 +10,7 @@ public class User {
     private String username;
     private String password;
     private String deptname;
-    private String level; // 员工等级
+    private String job; // 员工等级
     private Date registerDate; //注册时间
 
     public Integer getUserid() {
@@ -45,19 +45,21 @@ public class User {
         this.deptname = deptname;
     }
 
-    public String getLevel() {
-        return level;
-    }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
 
-    public Date getregisterDate() {
+    public Date getRegisterDate() {
         return registerDate;
     }
 
-    public void setregisterDate(Date registerDate) {
+    public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 }

@@ -5,7 +5,7 @@
 <mapper namespace="com.suntak.demo.dao.UserDao">
     <select id="queryUser" resultType="com.suntak.demo.entity.User">
         SELECT userid, username,password,
-               deptname,level,registerDate
+               deptname,job,registerDate
         FROM t_user
         ORDER BY registerDate
         DESC
@@ -13,7 +13,7 @@
 
     <select id="getUserById" resultType="com.suntak.demo.entity.User">
         SELECT userid, username,password,
-               deptname,level,registerDate
+               deptname,job,registerDate
         FROM t_user
         WHERE userid = #{userid}
     </select>
@@ -21,18 +21,19 @@
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userid"
     keyColumn="userid" parameterType="com.suntak.demo.entity.User">
         INSERT INTO t_user(username,password,
-               deptname,level,registerDate)
+               deptname,job,registerDate)
         VALUES
-        (#{username},#{password},#{deptname},#{level},#{registerDate})
+        (#{username},#{password},#{deptname},#{job},#{registerDate})
     </insert>
 
     <update id="updateUser"  parameterType="com.suntak.demo.entity.User">
         UPDATE  t_user
-        <set>
-            <if test="username!=null">username=#{username}</if>
-            <if test="password!=null">username=#{password}</if>
-            <if test="deptname!=null">username=#{deptname}</if>
-            <if test="level!=null">username=#{level}</if>
+         <set>
+             <if test="username!=null">username=#{username},</if>
+             <if test="password!=null">password=#{password},</if>
+             <if test="deptname!=null">deptname=#{deptname},</if>
+            <if test="registerDate!=null">registerDate=#{registerDate},</if>
+            <if test="job!=null">job=#{job}</if>
         </set>
         WHERE userid=#{userid}
     </update>
