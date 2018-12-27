@@ -18,6 +18,14 @@
         WHERE userid = #{userid}
     </select>
 
+
+    <select id="checkUser" resultType="com.suntak.demo.entity.User">
+        SELECT userid, username,password,
+               deptname,job,registerDate
+        FROM t_user
+        WHERE username = #{username} and password = #{password}
+    </select>
+
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userid"
     keyColumn="userid" parameterType="com.suntak.demo.entity.User">
         INSERT INTO t_user(username,password,
